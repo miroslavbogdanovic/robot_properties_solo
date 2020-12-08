@@ -7,7 +7,7 @@ URDF and ROS integration of the Solo BLMC robot
 
 ### Get Started
 
-Assuming you have already install Pinocchio:
+Assuming you have already installed Pinocchio:
 
 Install pinocchio_bullet
 ```
@@ -19,7 +19,7 @@ pip3 install .
 Install robot_properties_solo
 ```
 git clone git@github.com:huaijiangzhu/robot_properties_solo.git
-cd pinocchio_bullet
+cd robot_properties_solo
 pip3 install .
 ```
 
