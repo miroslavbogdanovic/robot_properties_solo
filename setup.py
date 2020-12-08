@@ -1,13 +1,8 @@
 #!/usr/bin/env python
 
-import glob
 import sys
-from os import path, walk, mkdir, access, X_OK, environ, pathsep
+from os import path, walk
 from setuptools import setup, find_packages
-# import xacro
-import argparse
-import subprocess
-
 
 def print_error(*args, **kwargs):
     """ Print in stderr. """
@@ -37,7 +32,7 @@ package_name = "robot_properties_solo"
 with open("readme.md", "r") as fh:
     long_description = fh.read()
 
-# Install the resource files.
+# Find the resource files.
 resources = find_resources(package_name)
 
 # Install the package.xml.

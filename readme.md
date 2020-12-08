@@ -9,10 +9,10 @@ URDF and ROS integration of the Solo BLMC robot
 
 Assuming you have already installed Pinocchio:
 
-Install pinocchio_bullet
+Install bullet_utils
 ```
-git clone git@github.com:machines-in-motion/pinocchio_bullet.git
-cd pinocchio_bullet
+git clone git@github.com:huaijiangzhu/bullet_utils.git
+cd bullet_utils
 pip3 install .
 ```
 
@@ -35,10 +35,11 @@ robot = Solo12Robot()
 - Maximilien Naveau
 - Avadesh Meduri
 - Julian Viereck
+- Huaijiang Zhu
 
 ### Copyrights
 
-Copyright(c) 2018-2019 Max Planck Gesellschaft, New York University
+Copyright(c) 2018-2021 Max Planck Gesellschaft, New York University
 
 ### License
 
