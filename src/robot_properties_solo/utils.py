@@ -1,8 +1,26 @@
-import importlib_resources
+try:
+    # use standard Python importlib if available (>Python3.7)
+    import importlib.resources as importlib_resources
+except ImportError:
+    import importlib_resources
+
 import glob
 import sys
 from os import path, walk, mkdir, access, X_OK, environ, pathsep
 import subprocess
+
+from xacro import process_file, open_output
+from xacro.color import warning, error, message
+from xacro.xmlutils import *
+from xacro.cli import process_args
+
+try: # python 2
+    _basestr = basestring
+    encoding = { 'encoding': 'utf-8' }
+except NameError: # python 3
+    _basestr = str
+    unicode = str
+    encoding = {}
 
 def find_path(robot_family, robot_name):
     with importlib_resources.path(__package__, "utils.py") as p:
@@ -61,10 +79,35 @@ def build_xacro_files(resources_dir):
                 generated_urdf_path = path.join(
                     build_folder, path.basename(path.splitext(xacro_file)[0])
                 )
-                # Call xacro.
-                bash_command = ["xacro", xacro_file, "-o", generated_urdf_path]
-                process = subprocess.Popen(bash_command, stdout=subprocess.PIPE)
-                process.communicate()
+                # Call xacro in bash
+                # bash_command = ["xacro", xacro_file, "-o", generated_urdf_path]
+                # process = subprocess.Popen(bash_command, stdout=subprocess.PIPE)
+                # process.communicate()
+                build_single_xacro_file(xacro_file, generated_urdf_path)
+
+
+def build_single_xacro_file(input_path, output_path):
+    try:
+        # open and process file
+        doc = process_file(input_path)
+        # open the output file
+        out = open_output(output_path)
+
+    except xml.parsers.expat.ExpatError as e:
+        error("XML parsing error: %s" % unicode(e), alt_text=None)
+        sys.exit(2) 
+
+    except Exception as e:
+        msg = unicode(e)
+        if not msg: msg = repr(e)
+        error(msg)
+        sys.exit(2)  # gracefully exit with error condition
+
+    # write output
+    out.write(doc.toprettyxml(indent='  ', **encoding))
+    # only close output file, but not stdout
+    out.close()
+
 
 
         
