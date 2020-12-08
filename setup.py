@@ -58,7 +58,7 @@ setup(
     package_data={package_name: resources},
     data_files=data_files_to_install,
     scripts=scripts_list,
-    install_requires=["setuptools", "xacro", "importlib"],
+    install_requires=["setuptools", "xacro", "importlib", "pybullet"],
     zip_safe=True,
     maintainer="mnaveau",
     maintainer_email="mnaveau@tuebingen.mpg.de",
