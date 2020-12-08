@@ -40,25 +40,6 @@ def find_path(robot_family, robot_name):
     return resources_dir, yaml_path, urdf_path
 
 
-def which(program):
-    """ Find program. """
-
-    def is_exe(fpath):
-        return path.isfile(fpath) and access(fpath, X_OK)
-
-    fpath, _ = path.split(program)
-    if fpath:
-        if is_exe(program):
-            return program
-    else:
-        for env_path in environ["PATH"].split(pathsep):
-            exe_file = path.join(env_path, program)
-            if is_exe(exe_file):
-                return exe_file
-
-    return None
-
-
 def build_xacro_files(resources_dir):
     """ Look for the xacro files and build them in the build folder. """
 
@@ -73,17 +54,16 @@ def build_xacro_files(resources_dir):
         mkdir(build_folder)
 
     for xacro_file in xacro_files:
-        if which("xacro") is not None:
-            for xacro_file in xacro_files:
-                # Generated file name
-                generated_urdf_path = path.join(
-                    build_folder, path.basename(path.splitext(xacro_file)[0])
-                )
-                # Call xacro in bash
-                # bash_command = ["xacro", xacro_file, "-o", generated_urdf_path]
-                # process = subprocess.Popen(bash_command, stdout=subprocess.PIPE)
-                # process.communicate()
-                build_single_xacro_file(xacro_file, generated_urdf_path)
+        for xacro_file in xacro_files:
+            # Generated file name
+            generated_urdf_path = path.join(
+                build_folder, path.basename(path.splitext(xacro_file)[0])
+            )
+            # Call xacro in bash
+            # bash_command = ["xacro", xacro_file, "-o", generated_urdf_path]
+            # process = subprocess.Popen(bash_command, stdout=subprocess.PIPE)
+            # process.communicate()
+            build_single_xacro_file(xacro_file, generated_urdf_path)
 
 
 def build_single_xacro_file(input_path, output_path):
