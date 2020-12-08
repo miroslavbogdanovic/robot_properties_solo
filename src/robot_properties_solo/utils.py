@@ -1,11 +1,11 @@
-import importlib.resources
+import importlib_resources
 import glob
 import sys
 from os import path, walk, mkdir, access, X_OK, environ, pathsep
 import subprocess
 
 def find_path(robot_family, robot_name):
-    with importlib.resources.path(__package__, "utils.py") as p:
+    with importlib_resources.path(__package__, "utils.py") as p:
             package_dir = p.parent.absolute()
     
     resources_dir = package_dir/"resources"
