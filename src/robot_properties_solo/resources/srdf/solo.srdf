@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="solo">
+<robot name="solo12">
 
     <!-- left front leg -->
     <group name="lf_leg">
