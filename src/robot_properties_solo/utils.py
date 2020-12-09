@@ -29,7 +29,7 @@ def find_paths(robot_name, robot_family="solo"):
     resources_dir = package_dir/"resources"
     yaml_path = resources_dir/"dynamic_graph_manager"/("dgm_parameters_" + robot_name + ".yaml")
     urdf_path = resources_dir/(robot_name + ".urdf")
-    srdf_path = resources_dir/"srdf"/(robot_name + ".srdf")
+    srdf_path = resources_dir/"srdf"/(robot_family + ".srdf")
     
     if not urdf_path.exists():
         build_xacro_files(resources_dir)
