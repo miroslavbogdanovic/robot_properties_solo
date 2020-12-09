@@ -22,7 +22,7 @@ except NameError: # python 3
     unicode = str
     encoding = {}
 
-def find_path(robot_family, robot_name):
+def find_path(robot_name, robot_family="solo"):
     with importlib_resources.path(__package__, "utils.py") as p:
             package_dir = p.parent.absolute()
     
