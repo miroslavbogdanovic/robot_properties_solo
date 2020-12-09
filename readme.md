@@ -30,7 +30,7 @@ from bullet_utils.env import BulletEnvWithGround
 from robot_properties_solo.solo12wrapper import Solo12Robot
 
 env = BulletEnvWithGround(p.GUI)
-robot = env.add_robot(Solo12Robot())
+robot = env.add_robot(Solo12Robot)
 ```
 
 ### Authors
