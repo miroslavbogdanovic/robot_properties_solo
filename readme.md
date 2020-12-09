@@ -25,8 +25,12 @@ pip3 install .
 
 Load Solo12 in PyBullet
 ```
+import pybullet as p
+from bullet_utils.env import BulletEnvWithGround
 from robot_properties_solo.solo12wrapper import Solo12Robot
-robot = Solo12Robot()
+
+env = BulletEnvWithGround(p.GUI)
+robot = env.add_robot(Solo12Robot())
 ```
 
 ### Authors
