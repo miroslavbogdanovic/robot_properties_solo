@@ -33,6 +33,21 @@ env = BulletEnvWithGround(p.GUI)
 robot = env.add_robot(Solo12Robot)
 ```
 
+Run simulation on MPI cluster
+```
+conda create -n solo python=3.7
+source activate solo
+conda install -c conda-forge pinocchio 
+
+git clone git@github.com:huaijiangzhu/bullet_utils.git
+cd bullet_utils
+pip3 install .
+
+git clone git@github.com:huaijiangzhu/robot_properties_solo.git
+cd robot_properties_solo
+pip3 install .
+```
+
 ### Authors
 
 - Felix Grimmiger
