@@ -55,10 +55,14 @@ class Solo12Robot(PinBulletWrapper):
             )
 
         self.base_link_name = "base_link"
+        self.end_eff_ids = []
         controlled_joints = []
         for leg in ["FL", "FR", "HL", "HR"]:
             controlled_joints += [leg + "_HAA", leg + "_HFE", leg + "_KFE"]
+            self.end_eff_ids.append(self.pin_robot.model.getFrameId(leg + "_FOOT"))
         self.joint_names = controlled_joints
+
+
 
         # Creates the wrapper by calling the super.__init__.
         super(Solo12Robot, self).__init__(
