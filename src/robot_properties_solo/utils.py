@@ -22,22 +22,24 @@ except NameError: # python 3
     unicode = str
     encoding = {}
 
-def find_path(robot_family, robot_name):
+def find_paths(robot_name, robot_family="solo"):
     with importlib_resources.path(__package__, "utils.py") as p:
             package_dir = p.parent.absolute()
     
     resources_dir = package_dir/"resources"
     yaml_path = resources_dir/"dynamic_graph_manager"/("dgm_parameters_" + robot_name + ".yaml")
     urdf_path = resources_dir/(robot_name + ".urdf")
+    srdf_path = resources_dir/"srdf"/(robot_family + ".srdf")
     
     if not urdf_path.exists():
         build_xacro_files(resources_dir)
 
-    resources_dir = str(resources_dir)
-    yaml_path = str(yaml_path)
-    urdf_path = str(urdf_path)
+    paths = {"resources":str(resources_dir),
+             "yaml":str(yaml_path),
+             "srdf":str(srdf_path),
+             "urdf":str(urdf_path)}
 
-    return resources_dir, yaml_path, urdf_path
+    return paths
 
 
 def build_xacro_files(resources_dir):

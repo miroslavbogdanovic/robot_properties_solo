@@ -15,10 +15,8 @@ All rights reserved.
 
 import pinocchio as pin
 import numpy as np
-from ament_index_python.packages import get_package_share_directory
 import time
 import os
-from os.path import join
 
 from robot_properties_solo.config import Solo12Config
 

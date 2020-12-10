@@ -37,6 +37,10 @@ resources = find_resources(package_name)
 
 # Install the package.xml.
 data_files_to_install = [(path.join("share", package_name), ["package.xml"])]
+data_files_to_install += [
+    ("share/ament_index/resource_index/packages", 
+    [path.join("src", package_name, "resources", package_name)])
+]
 
 # Install nodes and demos.
 scripts_list = []
