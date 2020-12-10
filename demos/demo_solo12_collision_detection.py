@@ -19,6 +19,8 @@ import time
 import os
 
 from robot_properties_solo.config import Solo12Config
+from robot_properties_solo.utils import find_paths
+
 
 if __name__ == "__main__":
     #  Load the robot urdf.
@@ -31,9 +33,7 @@ if __name__ == "__main__":
     robot.collision_model.addAllCollisionPairs()
 
     #  Find the absolute path to the srdf file
-    srdf_path = join(
-        get_package_share_directory("robot_properties_solo"), "srdf", "solo.srdf"
-    )
+    srdf_path = find_paths("solo12")['srdf']
 
     #  Disable collision pairs specified in the srdf
     pin.removeCollisionPairs(robot.model, robot.collision_model, srdf_path)
