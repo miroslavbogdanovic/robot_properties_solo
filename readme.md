@@ -3,27 +3,40 @@ Robot Properties Solo
 
 ### What it is
 
-URDF and ROS integration of the Solo BLMC robot
+URDF and ROS integration of the Solo BLMC robot.
 
-### Get Started
+### Installation
 
-Assuming you have already installed Pinocchio:
+1. Install Pinocchio if you have not done so already.
 
-Install bullet_utils
-```
-git clone git@github.com:huaijiangzhu/bullet_utils.git
-cd bullet_utils
-pip3 install .
-```
+   The simplest way to do so is using Conda:
 
-Install robot_properties_solo
-```
-git clone git@github.com:huaijiangzhu/robot_properties_solo.git
-cd robot_properties_solo
-pip3 install .
-```
+   ```
+   conda install -c conda-forge pinocchio
+   ```
 
-Load Solo12 in PyBullet
+   Alternatively you can use any of the ways listed here: https://stack-of-tasks.github.io/pinocchio/download.html.
+
+2. Install bullet_utils:
+
+  ```
+  git clone git@github.com:huaijiangzhu/bullet_utils.git
+  cd bullet_utils
+  pip3 install .
+  ```
+
+3. Install robot_properties_solo:
+
+  ```
+  git clone git@github.com:huaijiangzhu/robot_properties_solo.git
+  cd robot_properties_solo
+  pip3 install .
+  ```
+
+### Examples
+
+**Loading Solo12 in PyBullet**
+
 ```
 import pybullet as p
 from bullet_utils.env import BulletEnvWithGround
@@ -33,7 +46,8 @@ env = BulletEnvWithGround(p.GUI)
 robot = env.add_robot(Solo12Robot)
 ```
 
-Run simulation on MPI cluster
+**Run simulation on MPI cluster**
+
 ```
 conda create -n solo python=3.7
 source activate solo
